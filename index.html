@@ -1,151 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HBD MANOON</title>
-    <style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Mahmoud</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
+  <style>
     body {
-      margin: 0;
-      background: linear-gradient(145deg, #1e1e1e, #2e2e2e);
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: radial-gradient(ellipse at top, #2c3e50, #000);
+      color: white;
       font-family: 'Segoe UI', sans-serif;
-      overflow: hidden;
-    }
-
-    .container {
       text-align: center;
-      transform: scale(1.2);
+      overflow: hidden;
+      height: 100vh;
     }
 
     .cake {
+      margin: 150px auto 20px;
+      width: 200px;
+      height: 200px;
       position: relative;
-      width: 220px;
-      margin: 0 auto;
-      animation: float 3s ease-in-out infinite;
+      opacity: 0;
+      animation: fadeInCake 1.5s ease-out 0.3s forwards;
+    }
+
+    @keyframes fadeInCake {
+      to {
+        opacity: 1;
+      }
     }
 
     .layer {
-      height: 40px;
-      border-radius: 10px;
-      margin-bottom: 6px;
+      position: absolute;
+      width: 180px;
+      height: 50px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.5);
+      background: linear-gradient(to bottom, #ff8a80, #ff5252, #d50000);
+      border-radius: 20px;
+      box-shadow: inset 0 -5px 0 rgba(0,0,0,0.2);
       opacity: 0;
-      transform: translateY(-40px);
-      animation: dropIn 0.6s forwards;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      animation: squishMagic 1.5s forwards ease-out;
     }
 
-    .layer1 {
-      background: linear-gradient(to right, #ffdde1, #ffb6c1);
-      animation-delay: 0.3s;
+    .layer::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 8px;
+      top: 8px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      filter: blur(1px);
     }
 
-    .layer2 {
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
-      animation-delay: 0.6s;
-    }
+    .layer1 { top: 0; animation-delay: 0.4s; }
+    .layer2 { top: 60px; animation-delay: 0.8s; }
+    .layer3 { top: 120px; animation-delay: 1.2s; }
 
-    .layer3 {
-      background: linear-gradient(to right, #fcb69f, #ff9a9e);
-      animation-delay: 0.9s;
+    @keyframes squishMagic {
+      0% {
+        transform: translateX(-50%) scale(0.2) rotate(30deg);
+        opacity: 0;
+      }
+      40% {
+        transform: translateX(-50%) scale(1.1) rotate(-10deg);
+        opacity: 1;
+      }
+      70% {
+        transform: translateX(-50%) scale(0.95) rotate(5deg);
+      }
+      100% {
+        transform: translateX(-50%) scale(1) rotate(0);
+        opacity: 1;
+      }
     }
 
     .candle {
+      width: 10px;
+      height: 30px;
+      background: yellow;
       position: absolute;
-      top: -50px;
-      left: 100px;
-      width: 20px;
-      height: 50px;
-      background: #fff;
-      border-radius: 4px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-      opacity: 0;
-      animation: fadeIn 0.6s ease 1.2s forwards;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+      z-index: 10;
     }
 
     .flame {
-      position: absolute;
-      top: -18px;
-      left: 5px;
-      width: 10px;
-      height: 10px;
-      background: radial-gradient(circle, gold, orange);
+      width: 8px;
+      height: 12px;
+      background: orange;
       border-radius: 50%;
-      animation: flicker 0.3s infinite alternate, fadeIn 0.6s ease 1.5s forwards;
-      box-shadow: 0 0 12px gold;
-      opacity: 0;
-    }
-
-    .message {
-      margin-top: 30px;
-      font-size: 24px;
-      font-weight: bold;
-      background: linear-gradient(90deg, #ff8a00, #e52e71, #9b00ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: fadeInUp 1s ease 2s forwards;
-      opacity: 0;
-      text-shadow: 0 0 10px rgba(255, 0, 150, 0.4);
-      width: 250px;
-    }
-
-    /* Animations */
-    @keyframes dropIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: flicker 0.2s infinite alternate;
     }
 
     @keyframes flicker {
-      0% { transform: scale(1); opacity: 1; }
-      100% { transform: scale(1.3); opacity: 0.7; }
+      0% { opacity: 1; transform: translateX(-50%) scale(1); }
+      100% { opacity: 0.7; transform: translateX(-50%) scale(1.1); }
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    .smoke {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      animation: smokeRise 2s infinite ease-out;
+    }
+
+    @keyframes smokeRise {
+      0% { opacity: 0.5; transform: translateX(-50%) translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateX(-50%) translateY(-40px) scale(2); }
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 2em;
+      color: #ffeb3b;
+      animation: fadeInDown 1.5s;
+      text-transform: uppercase;
+    }
+
+    .version {
+      margin-top: 10px;
+      color: #ccc;
+      font-size: 1rem;
+    }
+
+    #gift-btn {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      background: #00e5ff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #111;
+      transition: 0.3s;
+    }
+
+    #gift-btn:hover {
+      background: #1de9b6;
+    }
+
+    .gift {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.5rem;
+      color: #00e676;
+      animation: tada 1s;
     }
   </style>
 </head>
 <body>
-     <div class="container">
-    <div class="cake">
-      <div class="candle">
-        <div class="flame"></div>
-      </div>
-      <div class="layer layer1"></div>
-      <div class="layer layer2"></div>
-      <div class="layer layer3"></div>
-    </div>
-    <div class="message">🎉 Happy Birthday to the best engineer ever 🎉
-      ENJOY YA MANOON
+
+  <div class="cake animate__animated animate__fadeInUp">
+    <div class="layer layer1"></div>
+    <div class="layer layer2"></div>
+    <div class="layer layer3"></div>
+    <div class="candle">
+      <div class="flame"></div>
+      <div class="smoke"></div>
     </div>
   </div>
 
+  <h1>🎉 Happy Birthday to the best engineer ever 🎉 ENJOY YA MANOON </h1>
 
+  <button id="gift-btn">🎁 Open Your Gift</button>
+  <div class="gift" id="gift-msg">+1 Cake 🍰 ,  +3 Wishes 🌠</div>
 
+  <!-- Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
+ 
 
-  
+  <script>
+    // Start confetti + sound
+    window.onload = () => {
+      const duration = 3 * 1000;
+      const end = Date.now() + duration;
     
+
+      (function frame() {
+        confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+        confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    };
+
+    // Gift button action
+    document.getElementById("gift-btn").onclick = () => {
+      const gift = document.getElementById("gift-msg");
+      gift.style.display = "block";
+      gift.classList.add("animate__animated", "animate__tada");
+    };
+  </script>
+
 </body>
 </html>
